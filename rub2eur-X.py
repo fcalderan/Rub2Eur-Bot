@@ -1,3 +1,8 @@
+# Copyright (c) 2024 – today by Fabrizo Calderan. All rights reserved.
+# This code is licensed under a non-commercial license.
+# You may not use, copy, modify, or distribute this code for commercial purposes.
+
+
 # ======================================================
 # Imports
 # ======================================================
