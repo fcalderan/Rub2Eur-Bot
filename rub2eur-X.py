@@ -24,7 +24,7 @@ from dotenv import load_dotenv # type: ignore
 # Configuration
 # ======================================================
 
-PROD_MODE = False
+PROD_MODE = True
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
@@ -32,7 +32,7 @@ API_SECRET = os.getenv("API_SECRET")
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
 ACCESS_SECRET = os.getenv("ACCESS_SECRET")
 BEARER_TOKEN = os.getenv("BEARER_TOKEN")
-OUTPUT_RATE = 1.75 if (PROD_MODE) else 0.0015
+OUTPUT_RATE = 1.5 if (PROD_MODE) else 0.0015
 
 
 
@@ -53,12 +53,15 @@ class TwitterBot:
             access_token_secret=access_secret
         )
 
-    def tweet(self, text, chart, alt_text):
-        media = self.api.media_upload(filename="temp.png", file=chart)
-        self.api.create_media_metadata(media.media_id, alt_text)
-        self.client.create_tweet(text=text, media_ids=[media.media_id])
-        print("\nTweet posted successfully.")
-
+    def tweet(self, text, chart, alt_text, timestamp):
+        try:
+            media = self.api.media_upload(filename="temp.png", file=chart)
+            self.api.create_media_metadata(media.media_id, alt_text)
+            self.client.create_tweet(text=text, media_ids=[media.media_id])
+            print("\nTweet posted successfully.")
+            print(f"[{timestamp}] Tweet Content:\n—————— \n{text}\n——————\n")
+        except tweepy.errors.TooManyRequests:
+            print("\nToo many request.\nCheck https://developer.x.com/en/docs/x-api/rate-limits for further information")
 
 
 class ExchangeRateBot:
@@ -76,25 +79,23 @@ class ExchangeRateBot:
         data  = self.scraper.get_exchange_data()
         rate, trend, chart = data["rate"], data["trend"], data["chart"]
 
-        alt_text = f"#EURRUB exchange rate: {rate:.4f}, as of {timestamp} " 
+        alt_text = f"#EURRUB exchange rate: {rate:.5f}, as of {timestamp} " 
         alt_text += f"Berlin's time. 5-day trend chart ({trend})."
         
         trend = trend.replace("up by", "↑").replace("down by", "↓")
         tweet = (
-            f"🇷🇺🇪🇺 RUB/EUR: {rate:.4f}\n\n"
-            f"Data provided by Google Finance, live #RUBEUR rate as " 
-            f"of {timestamp} Berlin's time. Trend chart of the last " 
-            f"5 days ({trend}). #RussianBankCollapse #RussiaIsCollapsing"
+            f"🇷🇺🇪🇺 RUB/EUR: {rate:.5f}\n\n"
+            f"Data retrieved from @googlefinance, live #RUBEUR rate as " 
+            f"of {timestamp} Berlin's time. Trend chart of the last 5 " 
+            f"days ({trend}). #RussianBankCollapse #RussiaIsCollapsing"
         )
 
         if PROD_MODE:
-            self.twitter_bot.tweet(tweet, chart, alt_text)
-
-        print(f"[{timestamp}] Tweet Content:\n—————— \n{tweet}\n——————\n")
-
+            self.twitter_bot.tweet(tweet, chart, alt_text, timestamp)
+            
         
 
-    def start(self):
+    def start(self):       
         schedule.every(OUTPUT_RATE).hours.do(self.tweet_exchange_rate).run()
         while True:
             schedule.run_pending()
