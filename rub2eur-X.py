@@ -47,24 +47,25 @@ class XClient:
             access_token_secret=access_secret
         )
 
-    def publish(self, text, chart, alt_text, timestamp):
-        try:
-            media = self.api.media_upload(filename="temp.png", file=chart)
-            self.api.create_media_metadata(media.media_id, alt_text)
-            self.client.create_tweet(text=text, media_ids=[media.media_id])
-            print(f"\n[{timestamp}] Post published successfully on X.")
-            print(f"Post Content:\n—————— \n{text}\n——————")
-        except tweepy.errors.TooManyRequests:
-            print(f"\n[{timestamp}] Too many request.\nVisit https://developer.x.com/en/docs/x-api/rate-limits for further information.\n——————")
-
+    def publish(self, text, chart, alt_text, timestamp, prod_mode):
+        if prod_mode:
+            try:
+                media = self.api.media_upload(filename="temp.png", file=chart)
+                self.api.create_media_metadata(media.media_id, alt_text)
+                self.client.create_tweet(text=text, media_ids=[media.media_id])
+                print(f"\n[{timestamp}] Post successfully published on X.")
+            except tweepy.errors.TooManyRequests:
+                print(f"\n[{timestamp}] Too many request.\nVisit https://developer.x.com/en/docs/x-api/rate-limits for further information.\n——————")
+        
+        print(f"Post Content:\n—————— \n{text}\n——————")
 
 
 # ======================================================
 # Initialize components
 # ======================================================
 
-scraper = ExchangeRateScraper()
 client = XClient(X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_SECRET, X_BEARER_TOKEN)
+scraper = ExchangeRateScraper()
 
 # Initialize and start the bot
 bot = ExchangeRateBot(scraper, client)
