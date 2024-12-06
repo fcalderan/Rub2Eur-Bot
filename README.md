@@ -82,7 +82,7 @@ The bot will immediately fetch exchange rates, post updates, and schedule furthe
 **Example Output**
 A sample Xeet/Tweet or BlueSky post:
 
-> 🇷🇺🇪🇺 RUB/EUR: 0.00896
+> 🇷🇺🇪🇺 RUB/EUR: 0.00896  
 Live #RUBEUR rate as of 01/01/2024 12:00 Berlin's time. Chart of the trend for the last 5 days.
 #RussianBankCollapse #RussiaIsCollapsing
 
