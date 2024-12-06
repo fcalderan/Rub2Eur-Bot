@@ -45,9 +45,8 @@ The modular design makes it easy to:
    ```bash
    pip install playwright tweepy python-dotenv
    playwright install
-   
-   
-   
+
+
 ### Configuration
 Create a `.env` file in the root directory with the following variables:
 
