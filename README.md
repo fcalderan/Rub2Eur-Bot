@@ -1,13 +1,13 @@
 # RUB2EUR Bot
 
-A Python-based bot that scrapes exchange rate data from Google Finance and periodically posts the RUB/EUR exchange rate to specified platforms, such as Twitter or BlueSky.
+A Python-based bot that scrapes exchange rate data from Google Finance and periodically posts the RUB/EUR exchange rate to specified platforms, such as X/Twitter or BlueSky.
 
 ## Project Overview
 
 This project automates the retrieval and publication of exchange rate data for the Russian Ruble (RUB) and Euro (EUR). It uses:
 
 - **Playwright**: For web scraping exchange rate data and generating visual snapshots.
-- **Tweepy**: For interacting with Twitter's API to post updates.
+- **Tweepy**: For interacting with X/Twitter's API to post updates.
 - **BlueSky Client**: For posting updates to the decentralized BlueSky platform.
 - **Modular Code Structure**: Organized into reusable components for scraping and platform-specific interactions.
 
@@ -15,7 +15,7 @@ This project automates the retrieval and publication of exchange rate data for t
 
 - Fetches real-time exchange rates and trends.
 - Takes screenshots of exchange rate charts without saving to disk (uses in-memory processing).
-- Posts updates to Twitter and BlueSky, ensuring accessibility with alt-text descriptions.
+- Posts updates to XTwitter and BlueSky, ensuring accessibility with alt-text descriptions.
 - Configurable schedule for periodic updates.
 
 ## Project Structure
@@ -24,7 +24,7 @@ This project automates the retrieval and publication of exchange rate data for t
   - `exchangeRateScraper.py`: Handles web scraping logic.
   - `exchangeRateBot.py`: Encapsulates platform-specific logic.
 - `.env`: Stores sensitive API credentials securely.
-- `rub2eur-X.py`: The main entry point for the Twitter bot.
+- `rub2eur-X.py`: The main entry point for the X/Twitter bot.
 - `rub2eur-bsky.py`: The main entry point for the BlueSky bot.
 
 ### Why This Organization?
@@ -51,7 +51,7 @@ The modular design makes it easy to:
 ### Configuration
 Create a `.env` file in the root directory with the following variables:
 
-    # Twitter API credentials
+    # X/Twitter API credentials
     X_API_KEY=your_api_key
     X_API_SECRET=your_api_secret
     X_ACCESS_TOKEN=your_access_token
@@ -64,7 +64,7 @@ Create a `.env` file in the root directory with the following variables:
     
 Replace placeholder values with your actual credentials.
 
-For Twitter, learn how to obtain these credentials from the [X/Twitter Developer Portal](https://developer.x.com/en).
+For X/Twitter, learn how to obtain these credentials from the [X/Twitter Developer Portal](https://developer.x.com/en).
 
 ### Running the Bot
 
