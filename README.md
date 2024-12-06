@@ -85,7 +85,7 @@ A sample Xeet/Tweet or BlueSky post:
 Live #RUBEUR rate as of 01/01/2024 12:00 Berlin's time. Chart of the trend for the last 5 days.
 #RussianBankCollapse #RussiaIsCollapsing
 
-<img src="https://res.cloudinary.com/fabdev-/image/upload/v1733499225/rub2eur-X-bot_xqpdrl.png" alt="Preview" width="360" />
+<img src="https://res.cloudinary.com/fabdev-/image/upload/v1733499225/rub2eur-X-bot_xqpdrl.png" alt="Preview" width="480" />
 
 ## License
 
