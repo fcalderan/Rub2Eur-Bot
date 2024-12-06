@@ -27,9 +27,18 @@ This project automates the retrieval and publication of exchange rate data for t
 - `rub2eur-X.py`: The main entry point for the Twitter bot.
 - `rub2eur-bsky.py`: The main entry point for the BlueSky bot.
 
+### Why This Organization?
+
+The modular design makes it easy to:
+
+- Reuse or change scraping logic (exchangeRateScraper.py) .
+- Reuse or change post composition and automation (exchangeRateBot.py).
+- Securely manage credentials through the .env file.
+
+
 ## How to Set Up and Run Locally
 
-## Prerequisites
+### Prerequisites
 
 1. Install Python 3.8 or higher.
 2. Install the required libraries:
@@ -39,7 +48,7 @@ This project automates the retrieval and publication of exchange rate data for t
    
    
    
-## Configuration
+### Configuration
 Create a `.env` file in the root directory with the following variables:
 
     # Twitter API credentials
@@ -57,7 +66,7 @@ Replace placeholder values with your actual credentials.
 
 For Twitter, learn how to obtain these credentials from the [X/Twitter Developer Portal](https://developer.x.com/en).
 
-## Running the Bot
+### Running the Bot
 
 For X/Twitter:
 
@@ -70,15 +79,6 @@ For BlueSky:
 The bot will immediately fetch exchange rates, post updates, and schedule further executions.
 
 
-# Why This Organization?
-
-The modular design makes it easy to:
-
-- Reuse or change scraping logic (exchangeRateScraper.py) .
-- Reuse or change post composition and automation (exchangeRateBot.py).
-- Securely manage credentials through the .env file.
-
-
 **Example Output**
 A sample Xeet/Tweet or BlueSky post:
 
@@ -88,7 +88,7 @@ Live #RUBEUR rate as of 01/01/2024 12:00 Berlin's time. Chart of the trend for t
 
 
 
-# License
+## License
 
 > Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 >
