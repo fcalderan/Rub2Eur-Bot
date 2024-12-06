@@ -53,8 +53,7 @@ class ExchangeRateBot:
             f"days ({trend}). #RussianBankCollapse #RussiaIsCollapsing"
         )
 
-        if PROD_MODE:
-            self.client.publish(text, chart, alt_text, timestamp)
+        self.client.publish(text, chart, alt_text, timestamp, PROD_MODE)
             
         
 
