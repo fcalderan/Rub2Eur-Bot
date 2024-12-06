@@ -37,8 +37,7 @@ class ExchangeRateBot:
 
 
     def is_connection_available(self):
-        try:
-            # Verifica la connessione facendo una richiesta a google.com
+        try:           
             requests.get("https://www.google.com", timeout=5)
             return True
         except requests.ConnectionError:
