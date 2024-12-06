@@ -36,7 +36,7 @@ class ExchangeRateBot:
 
 
 
-    def is_connection_available(self, timestamp):
+    def is_connection_available(self):
         try:
             # Verifica la connessione facendo una richiesta a google.com
             requests.get("https://www.google.com", timeout=5)
@@ -65,7 +65,7 @@ class ExchangeRateBot:
 
 
 
-    def do_publish(self, timestamp):           
+    def do_publish(self):           
         data  = self.scraper.get_exchange_data()
         rate, trend, chart = data["rate"], data["trend"], data["chart"]
 
