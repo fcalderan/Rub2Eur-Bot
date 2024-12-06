@@ -76,7 +76,7 @@ The modular design makes it easy to:
 
 - Reuse or change scraping logic (exchangeRateScraper.py) .
 - Reuse or change post composition and automation (exchangeRateBot.py).
-- Securely manage credentials through the .env file.
+- Securely manage credentials through the .env file.
 
 
 **Example Output**
