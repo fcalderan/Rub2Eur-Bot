@@ -59,8 +59,8 @@ Create a `.env` file in the root directory with the following variables:
     X_BEARER_TOKEN=your_bearer_token
     
     # BlueSky API credentials
-    BSKY_API_KEY=your_bsky_api_key
-    BSKY_API_SECRET=your_bsky_api_secret
+    BSKY_USERNAME=your_bsky_username
+    BSKY_PASSWORD=your_bsky_password
     
 Replace placeholder values with your actual credentials.
 
