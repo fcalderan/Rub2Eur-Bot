@@ -37,25 +37,26 @@ class BlueskyClient:
         self.client = Client()
         self.client.login(username, password)
 
-    def publish(self, text, chart, alt_text, timestamp):
-        try:
-            #response = self.client.send_image(text=text, image=chart, image_alt=alt_text)
-            response = self.client.send_post(text=text)   
-            print(f"\n[{timestamp}] Post published successfully on Bluesky.")
-            print(f"Post Content:\n—————— \n{text}\n——————")
-            print(f"Response:\n  [uri] {response.uri}\n  [cid] {response.cid}\n——————")
-            
-        except:
-            print(f"\n[{timestamp}] Error posting on Bluesky. Visit https://docs.bsky.app/docs/advanced-guides/rate-limits for furher information.\n——————")
-            
+    def publish(self, text, chart, alt_text, timestamp, prod_mode):
+        if prod_mode:
+            try:
+                #response = self.client.send_image(text=text, image=chart, image_alt=alt_text)
+                response = self.client.send_post(text=text)   
+                print(f"\n[{timestamp}] Post successfully published on Bluesky.")
+                print(f"Response:\n  [uri] {response.uri}\n  [cid] {response.cid}\n——————")
+                
+            except:
+                print(f"\n[{timestamp}] Error posting on Bluesky. Visit https://docs.bsky.app/docs/advanced-guides/rate-limits for furher information.\n——————")
+                
+        print(f"Post Content:\n—————— \n{text}\n——————")
 
 
 # ======================================================
 # Initialize components
 # ======================================================
 
-scraper = ExchangeRateScraper()
 client = BlueskyClient(BSKY_USERNAME, BSKY_PASSWORD)
+scraper = ExchangeRateScraper()
 
 # Initialize and start the bot
 bot = ExchangeRateBot(scraper, client)
